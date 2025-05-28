@@ -99,7 +99,7 @@
           <p>
             Welcome to <a href="https://www.codabench.org/competitions/8529/" target="_blank">the 1st Edition of the RAW Image Denoising Challenge</a>, hosted at <a rel="license" href="https://www.cvlai.net/aim/2025/">Advances in Image Manipulation (AIM) workshop</a> in conjunction with ICCV 2025.
           </p>
-        <p>This challenge aims to develop methods for predicting clean RAW images from their noisy counterparts in a self-supervised and camera-agnostic manner. Specifically, the proposed denoising solutions should eliminate reliance on the labor-intensive process of collecting paired noisy-clean datasets and demonstrate robust performance across diverse camera systems.
+        <p>This challenge aims to develop methods for predicting clean RAW images from their noisy counterparts in a <strong>self-supervised</strong> and <strong>camera-agnostic</strong> manner. Specifically, the proposed denoising solutions should eliminate reliance on the labor-intensive process of collecting paired noisy-clean datasets and demonstrate robust performance across diverse camera systems.
         </p>
         <p>
             To facilitate this, we have curated a comprehensive benchmark dataset encompassing multiple cameras and a variety of scenes, both indoor and outdoor, along with calibration data essential for noise modeling specific to each camera.
@@ -149,11 +149,11 @@ The top-ranked participants will be awarded and invited to describe their soluti
       <h2 class="title">Data</h2>
 
       <img src="./website/static/example_shot.png" alt="dataset example"  width="1280" />
-<strong>Training</strong>
+<h5>Training</h5>
 <p>Clean images for training are unrestricted, allowing participants to utilize any dataset as long as its details are thoroughly documented in the final factsheet.</p>
 <p>As a starting point, we recommend the clean images from the SID dataset (Sony split), which can be accessed <a href="https://cchen156.github.io/SID.html" target="_blank">here</a>.</p>
 
-<strong>Testing</strong>
+<h5>Testing</h5>
 <p>Please register for the competition via <a href="https://www.codabench.org/competitions/8529/" target="_blank">codabench</a> to access the benchmark data and sample submission.</p>
 <p>For benchmarking, we collected a dataset using four cameras: SonyA7R4, SonyA6700, SonyZVE10M2, and Canon70D.</p>
 <p>To support the formulation of noise synthesis pipelines, we provide calibrated system gains and dark shading maps for each camera. The dataset includes two types of scenes:</p>
@@ -174,28 +174,28 @@ The top-ranked participants will be awarded and invited to describe their soluti
   <div class="container is-max-desktop content">
     <h2 class="title">Evaluation</h2>
 
-    <strong>Development phase</strong>
-    <ul>
-        <li>PSNR &amp; SSIM on center-cropped (512, 512, 4) RGGB-packed Bayer RAW of the paired data.</li>
-    </ul>
 
-    <strong>Final ranking phase</strong>
-    <p>The team ranking will be determined by ranking each metric:</p>
+    <h5>Development phase</h5>
+    <p>For Leaderboard, we rank participants based on PSNR &amp; SSIM on center-cropped (512, 512, 4) RGGB-packed Bayer RAW of the paired scenes.</li>
+    </p>
+
+    <h5>Final ranking (test) phase</h5>
+    <p>We will manually verify the results of the top-ranked methods before releasing the final test-set ratings. The team ranking will be determined by ranking each metric:</p>
     <ul>
-        <li>PSNR, SSIM, and LPIPS on paired data, and</li>
-        <li>ARNIQA and TOPIQ on in-the-wild images.</li>
+        <li>Full-reference metrics (PSNR, SSIM, and LPIPS) for paired scenes with aligned ground truth.</li>
+        <li>No-reference metrics (ARNIQA and TOPIQ) for in-the-wild scenes.</li>
     </ul>
-    <p>All evaluations will be measured on the full-resolution image.</p>
+    <p>All evaluations will be measured on the full-resolution image. Specifically:</p>
     <ul>
-        <li>PSNR &amp; SSIM on Bayer RAW</li>
+        <li>PSNR &amp; SSIM on Bayer RAW.</li>
         <li>LPIPS, ARNIQA, and TOPIQ on sRGB with a simple ISP pipeline.</li>
     </ul>
 
-    <strong>Efficiency Requirements</strong>
+    Additionally, we impose the following <strong>efficiency requirements</strong>:
     <ul>
-        <li>Maximum 15 million parameters for the nerual network</li>
-        <li>MACs for the input shape of (1, 4, 512, 512) shall be less than 150 GMacs</li>
-        <li>Ensembles of multiple models not allowed</li>
+        <li>Maximum 15 million parameters for the nerual network.</li>
+        <li>MACs for the input shape of (1, 4, 512, 512) shall be less than 150 GMacs.</li>
+        <li>Ensembles of multiple models are not allowed.</li>
     </ul>
     <p>More guidelines can be found in the <a href="https://github.com/SonyResearch/AIM2025_Denoise_Challenge/" target="_blank">starter kit repo</a>.</p>
 
