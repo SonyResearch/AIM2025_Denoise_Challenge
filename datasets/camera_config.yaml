@@ -1,15 +1,15 @@
-sonya6700:
-  ccm: [1.164, -0.157, 0.016, 0.143, 1.006, -0.125, 0.098, -0.035, 0.961]
-  suffix: 'ARW'
-  bayer_format: 'rggb'
-  valid_roi: [0, 0, 4128, 6192]  ## valid ROI of the entire bayer image, we need this as rawpy.raw_image_visible doesn't always work well
-
-
 canon70d:
   ccm: [[1.9125416, -1.0586561, 0.14611441], [-0.2248568, 1.646579, -0.42172217], [0.00986511, -0.5092886, 1.4994235]]
   suffix: 'CR2'
   bayer_format: 'rggb'
   valid_roi: [38, 72, 3708, 5568]
+
+
+sonya6700:
+  ccm: [[1.164, -0.157, 0.016], [0.143, 1.006, -0.125], [0.098, -0.035, 0.961]]
+  suffix: 'ARW'
+  bayer_format: 'rggb'
+  valid_roi: [0, 0, 4128, 6192]  ## valid ROI of the entire bayer image, we need this as rawpy.raw_image_visible doesn't always work well
 
 
 sonya7r4:
