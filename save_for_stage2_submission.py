@@ -62,15 +62,15 @@ def infer_and_save_for_submission(model, args):
 
                 ## ------- STEP 2: forward to model -------
                 noisy = torch.from_numpy(noisy).permute(2, 0, 1).unsqueeze(0).float().to(args.device)  # [1, 4, h, w]
-                denoised_rggb = model(noisy)  # [1, 4, h, w]
+                denoised = model(noisy)  # [1, 4, h, w]
 
                 ## ------- STEP 3: format to save, make sure the final npy file is saved as rggb
                 ## ------- in shape of [h, w, 4] and in 16 bit (Just clip the net's output to [0, 1] and scale by 65535,
                 #  ------- no need to apply the white-level and black-level back)
-                denoised_rggb = denoised_rggb.detach().cpu().permute(0, 2, 3, 1).numpy()[0]
-                denoised_rggb = np.clip(denoised_rggb, 0, 1)
-                denoised_rggb = np.uint16(denoised_rggb * 65535)
-                np.save(os.path.join(curr_save_dir, os.path.basename(noisy_dir).replace(suffix, "npy")), denoised_rggb)
+                denoised = denoised.detach().cpu().permute(0, 2, 3, 1).numpy()[0]
+                denoised = np.clip(denoised, 0, 1)
+                denoised = np.uint16(denoised * 65535)
+                np.save(os.path.join(curr_save_dir, os.path.basename(noisy_dir).replace(suffix, "npy")), denoised)
 
 
 def main(args):
