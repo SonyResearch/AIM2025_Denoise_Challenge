@@ -46,8 +46,6 @@ def infer_and_save_for_submission(model, args):
                 ## ------- STEP 1: load data (load bayer, subtract ds, normalizaton, pack to rggb, scale by dgain, and clip).
                 ## ------- PLEASE change to suit your pre-proceesings -------
                 rf = rawpy.imread(noisy_dir)
-                wb = np.array(rf.camera_whitebalance)
-                wb = wb / wb[1]
                 wl, bl = float(rf.white_level), np.mean(rf.black_level_per_channel)
                 noisy = np.array(rf.raw_image).astype(np.float32)
 
